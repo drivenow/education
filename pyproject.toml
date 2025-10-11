@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = []
+
+[project]
+name = "voice-education"
+version = "0.1.0"
+description = "Streamlit apps for English listening practice and OCR-to-speech study materials."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "Proprietary" }
+authors = [{ name = "Your Name" }]
+dependencies = [
+    "streamlit>=1.36",
+    "natsort>=8.4",
+    "pydub>=0.25",
+    "librosa>=0.10",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "soundfile>=0.12",
+    "sounddevice>=0.4",
+    "retrying>=1.3",
+    "openai>=1.0",
+    "openai-whisper>=20231117",
+    "torch>=2.1",
+    "easyocr>=1.7",
+    "opencv-python>=4.8",
+    "scikit-learn>=1.3",
+    "imageio>=2.33",
+    "pillow>=10.0",
+    "langchain>=0.2",
+    "langchain-community>=0.2",
+    "ollama>=0.1.8",
+    "gradio>=4.0",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=24.4",
+    "ruff>=0.5",
+]
+
