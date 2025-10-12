@@ -44,3 +44,4 @@ dev = [
     "ruff>=0.5",
 ]
 
+# sudo apt install -y libportaudio2 portaudio19-dev libportaudiocpp0 libasound2 libasound2-dev libsndfile1

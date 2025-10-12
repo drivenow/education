@@ -1,5 +1,6 @@
 import logging
 import datetime
+from os import makedirs
 import warnings
 logging.getLogger("PIL").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
@@ -16,6 +17,7 @@ logger = logging.getLogger("my_logger")
 logger.setLevel(logging.INFO)  # 设置日志级别为 DEBUG，记录所有级别的日志
 
 # 创建一个处理器，输出到文本文件
+makedirs("logs", exist_ok=True)
 file_handler = logging.FileHandler("logs/{}.log".format(now_date))
 file_handler.setLevel(logging.INFO)  # 设置文件处理器的日志级别为 DEBUG
 
