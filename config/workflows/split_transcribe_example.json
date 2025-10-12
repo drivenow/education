@@ -1,0 +1,44 @@
+{
+  "id": "demo_split_transcribe",
+  "title": "音频切分与识别演示",
+  "services": [
+    {
+      "name": "splitter",
+      "impl": "services.defaults.create_splitter",
+      "options": {
+        "min_silence_len": 500,
+        "silence_thresh": 16,
+        "label_with_stt": false
+      }
+    },
+    {
+      "name": "stt",
+      "impl": "services.defaults.create_stt",
+      "options": {
+        "model_size": "tiny",
+        "device": "cpu"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "split",
+      "type": "split",
+      "service": "splitter"
+    },
+    {
+      "id": "transcribe",
+      "type": "transcribe",
+      "service": "stt",
+      "params": {
+        "force_transcribe": false
+      }
+    }
+  ],
+  "assets": [
+    {
+      "id": "sample_audio",
+      "source_uri": ""
+    }
+  ]
+}
