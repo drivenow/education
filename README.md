@@ -79,7 +79,7 @@ python legacy/main_audio_workflow.py --day Mon
 |------------------|--------------------------------------------------------------|
 | `ServiceConfig`  | 声明运行时需要的服务实例，包含 `name`、`impl`、`options`    |
 | `StepConfig`     | 定义步骤的执行顺序与参数：`id`、`type`、`service`、`params` |
-| `AssetConfig`    | 需要处理的素材，如音频文件；`metadata` 可存放附加信息        |
+| `AssetConfig`    | 需要处理的素材（基于 `TaskMeta`），支持 `lang`、`crontab`、`steps` 等参数 |
 | `WorkflowConfig` | 顶层入口，包含 `services`、`steps`、`assets`                 |
 
 示例（节选自 `config/workflows/grade1_example.json`）：
@@ -104,24 +104,38 @@ python legacy/main_audio_workflow.py --day Mon
 }
 ```
 
-### `metadata.steps` 覆写
-若某个素材需要微调参数，可在 `AssetConfig.metadata.steps` 中设置覆盖值。例如：
+### `steps` 覆写
+若某个素材需要微调参数，可在 `AssetConfig.steps` 中直接设置覆盖值。例如：
 
 ```json
-"metadata": {
-  "day": "Mon",
+{
   "steps": {
     "play": { "repeats": 1, "translate": true }
-  }
+  },
+  "lang": "en",
+  "crontab": "Mon",
+  "max_session_seconds": 900
 }
 ```
 
-表示在 `play` 步骤使用重复 1 次、开启翻译，其余步骤仍按全局配置执行。覆写只允许修改现有步骤的参数或 service 名，不能增加/删除步骤，以保持流程结构一致。
+表示在 `play` 步骤使用重复 1 次、开启翻译，其余步骤仍按全局配置执行。`max_session_seconds` 用于限制单次播放的最长时长（若语言为英文，实际时长会除以 3），超过后本次 session 自动停止。覆写只允许修改现有步骤的参数或 service 名，不能增加/删除步骤，以保持流程结构一致。
 
 ### 常见配置文件
 - `config/workflows/split_transcribe_example.json`：最小示例，仅演示切分与识别。
 - `config/workflows/weekly_listening.json`：完整周计划，与旧版脚本等价，可配合 `workflow_runner.py --day Mon` 等过滤运行。
 - `legacy/main_audio_workflow.py`：使用代码构造上述配置并执行，供迁移对照。
+
+### StepContext 说明
+服务执行时都会收到一个 `StepContext` 实例，主要包含：
+
+- `workflow`：当前的 `WorkflowConfig`。
+- `asset`：正在处理的素材（继承自 `TaskMeta`，含播放进度、`max_session_seconds` 等信息）。
+- `step`：此次执行对应的 `StepConfig`。
+- `settings`：已经合并好的参数字典（全局默认 + 资产覆写 + 运行时覆写），服务逻辑只需读取这一份。
+- `artifacts`：跨步骤共享的可变存储，用于传递切分结果、识别文本、播放进度等。
+- `extras`：可选附加上下文，例如 `callbacks`、临时覆写等。
+
+建议服务实现只通过 `context.settings` 读取参数，并将中间产物写入 `context.artifacts`，从而保持流程统一清晰。
 
 ---
 

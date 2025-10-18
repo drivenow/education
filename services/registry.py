@@ -1,30 +1,36 @@
 from __future__ import annotations
 
-from importlib import import_module
-from typing import Any, Callable
+import importlib
+from typing import Any, Dict
 
+from models.workflow import ServiceConfig
 from services.base import BaseService
 
 
-Factory = Callable[[dict[str, Any]], BaseService]
-
-
 class ServiceRegistry:
-    """Simple registry/factory resolver for workflow services."""
+    """Resolve and cache service instances declared in workflow configuration."""
 
     def __init__(self) -> None:
-        self._factories: dict[str, Factory] = {}
+        self._instances: Dict[str, BaseService] = {}
 
-    def register(self, impl: str, factory: Factory) -> None:
-        self._factories[impl] = factory
+    def get(self, config: ServiceConfig) -> BaseService:
+        if config.name not in self._instances:
+            self._instances[config.name] = self._create(config)
+        return self._instances[config.name]
 
-    def create(self, impl: str, options: dict[str, Any]) -> BaseService:
-        if impl not in self._factories:
-            module_path, attr = impl.rsplit(".", 1)
-            module = import_module(module_path)
-            factory = getattr(module, attr)
-            if not callable(factory):
-                raise TypeError(f"Registered object {impl} must be callable.")
-            self._factories[impl] = factory  # cache for next time
-        return self._factories[impl](options)
+    def _create(self, config: ServiceConfig) -> BaseService:
+        module_name, attr = config.impl.rsplit(".", 1)
+        module = importlib.import_module(module_name)
+        factory: Any = getattr(module, attr)
+        options = config.options or {}
+
+        try:
+            instance = factory(**options)
+        except TypeError:
+            # Fallback: try passing the options as a single argument.
+            instance = factory(options)
+
+        if not hasattr(instance, "run"):
+            raise TypeError(f"Factory '{config.impl}' did not produce a valid service instance.")
+        return instance
 

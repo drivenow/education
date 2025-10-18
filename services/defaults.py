@@ -1,408 +1,373 @@
 from __future__ import annotations
 
 import os
-from pathlib import Path
 import re
 import time
-from typing import Any
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Dict, Iterable, List, Optional
 
-from natsort import natsorted
-from pydub import AudioSegment
-from pydub.silence import split_on_silence
-
-from audio_utils import play_audio, resample_audio
 from logger import logger
+from services.base import BaseService, ServiceError, StepContext
+import soundfile as sf
+
+try:
+    from pydub import AudioSegment
+    from pydub.silence import split_on_silence
+except:
+    raise ServiceError("pydub is required for audio splitting.")
+
+# Optional STT/translation/TTS backends
 from speech2text_model import speech_to_text
 from translate_model import traslate_text
+from speaker_model import speak_text
+from audio_utils import play_audio, resample_audio
 
-from services.base import BaseService, StepContext
+
+def create_splitter(**options: Any) -> "SplitterService":
+    return SplitterService(**options)
 
 
-class AudioSplitterService:
-    def __init__(self, options: dict[str, Any]):
-        self.options = options
+def create_stt(**options: Any) -> "STTService":
+    return STTService(**options)
 
-    def setup(self) -> None:
-        pass
 
-    def execute(self, ctx: StepContext, params: dict) -> StepContext:
-        asset = ctx["asset"]
-        source_path = Path(asset.source_uri)
-        target_dir = source_path.with_suffix("")
-        target_dir.mkdir(exist_ok=True, parents=True)
-        existing_chunks = sorted(target_dir.glob("*.wav"))
-        if len(existing_chunks) > 5:
-            logger.info("音频 %s 已存在切分结果，跳过重新生成。", source_path.name)
-            artifacts = ctx.setdefault("artifacts", {})
-            artifacts["split"] = {"target_dir": str(target_dir)}
-            artifacts["chunks"] = [str(path) for path in existing_chunks]
-            return ctx
-        min_silence_len = params.get("min_silence_len", self.options.get("min_silence_len", 500))
-        silence_thresh = params.get("silence_thresh", self.options.get("silence_thresh", 16))
-        bitrate = params.get("bitrate", self.options.get("bitrate", "128k"))
+def create_playback(**options: Any) -> "PlaybackService":
+    return PlaybackService(**options)
+
+
+@dataclass
+class SplitterService(BaseService):
+    min_silence_len: int = 700
+    silence_thresh: int = 16
+    keep_silence: int = 200
+    sample_rate: int = 16000
+    normalize: bool = True
+    enabled: bool = True
+    force_rebuild: bool = False
+
+    def run(self, context: StepContext) -> Dict[str, Any]:
+        params = self._merge_params(context.settings)
+        if not params.get("enabled", True):
+            result = {"skipped": True}
+            context.artifacts["split"] = result
+            return result
+            
+        source_path = context.asset.resolved_path()
+        if not source_path.exists():
+            raise ServiceError(f"Audio source not found: {source_path}")
+
+        target_dir = self._resolve_target_dir(source_path, params)
+        target_dir.mkdir(parents=True, exist_ok=True)
+
+        reuse_existing = (
+            not params.get("force_rebuild", self.force_rebuild)
+            and any(target_dir.glob("chunk*.wav"))
+        )
+        if reuse_existing:
+            chunk_paths = sorted(str(path) for path in target_dir.glob("chunk*.wav"))
+            transcripts = context.artifacts.get("transcripts", [])
+            result = {
+                "target_dir": str(target_dir),
+                "chunks": chunk_paths,
+                "transcripts": transcripts,
+                "reused": True,
+            }
+            context.artifacts.update(
+                {"split": result, "chunks": chunk_paths, "transcripts": transcripts}
+            )
+            return result
 
         audio = self._load_audio(source_path)
-        chunks = split_on_silence(
+        silence_threshold = audio.dBFS - int(params.get("silence_thresh", self.silence_thresh))
+        min_silence = int(params.get("min_silence_len", self.min_silence_len))
+        keep_silence = int(params.get("keep_silence", self.keep_silence))
+
+        logger.info(
+            "Splitting audio '%s' -> %s (min_silence=%sms, silence_thresh=%sdB, keep=%sms)",
+            source_path,
+            target_dir,
+            min_silence,
+            silence_threshold,
+            keep_silence,
+        )
+
+        segments = split_on_silence(
             audio,
-            min_silence_len=min_silence_len,
-            silence_thresh=audio.dBFS - silence_thresh,
+            min_silence_len=min_silence,
+            silence_thresh=silence_threshold,
+            keep_silence=keep_silence,
         )
-        label_with_stt = params.get(
-            "label_with_stt", self.options.get("label_with_stt", True)
-        )
-        model_size = params.get("model_size") or self.options.get("model_size", "small")
-        device = params.get("device") or self.options.get("device")
 
-        for i, chunk in enumerate(chunks):
-            silence_chunk = AudioSegment.silent(duration=500)
-            normalized_chunk = self._match_target_amplitude(silence_chunk + chunk, -25.0)
+        if not segments:
+            segments = [audio]
 
-            split_audio_file = target_dir / f"chunk{i}.wav"
-            normalized_chunk.export(
-                split_audio_file,
-                bitrate=bitrate,
-                format="wav",
-            )
+        chunk_paths: List[str] = []
+        for idx, segment in enumerate(segments):
+            chunk = self._prepare_segment(segment, params)
+            chunk_path = target_dir / f"chunk{idx:04d}.wav"
+            chunk.export(chunk_path, format="wav")
+            if params.get("sample_rate"):
+                try:
+                    resample_audio(str(chunk_path), sr=int(params["sample_rate"]))
+                except Exception as exc:  # pragma: no cover
+                    logger.warning("Failed to resample chunk %s: %s", chunk_path, exc)
+            chunk_paths.append(str(chunk_path))
 
-            resample_audio(str(split_audio_file), sr=16000)
+        result = {
+            "target_dir": str(target_dir),
+            "chunks": chunk_paths,
+            "reused": False,
+        }
+        context.artifacts.update({"split": result, "chunks": chunk_paths})
+        return result
+
+    def _merge_params(self, overrides: Dict[str, Any]) -> Dict[str, Any]:
+        params = {
+            "min_silence_len": self.min_silence_len,
+            "silence_thresh": self.silence_thresh,
+            "keep_silence": self.keep_silence,
+            "sample_rate": self.sample_rate,
+            "normalize": self.normalize,
+            "enabled": self.enabled,
+            "force_rebuild": self.force_rebuild,
+        }
+        params.update({k: v for k, v in overrides.items() if v is not None})
+        return params
+
+    def _resolve_target_dir(self, source_path: Path, params: Dict[str, Any]) -> Path:
+        if params.get("target_dir"):
+            return Path(params["target_dir"])
+        return source_path.parent / f"{source_path.stem}_chunks"
+
+    def _load_audio(self, source_path: Path) -> AudioSegment:
+        suffix = source_path.suffix.lower()
+        if suffix == ".mp3":
+            return AudioSegment.from_mp3(source_path)
+        if suffix == ".wav":
+            return AudioSegment.from_wav(source_path)
+        if suffix == ".m4a":
+            return AudioSegment.from_file(source_path, "m4a")
+        return AudioSegment.from_file(source_path)
+
+    def _prepare_segment(self, segment: AudioSegment, params: Dict[str, Any]) -> AudioSegment:
+        if params.get("normalize", True):
+            target_dbfs = params.get("target_dbfs", -25.0)
+            return segment.apply_gain(target_dbfs - segment.dBFS)
+        return segment
+
+@dataclass
+class STTService(BaseService):
+    model_size: str = "tiny"
+    device: Optional[str] = None
+    force_transcribe: bool = False
+
+    def run(self, context: StepContext) -> Dict[str, Any]:
+        params = {
+            "model_size": self.model_size,
+            "device": self.device,
+            "force_transcribe": self.force_transcribe,
+        }
+        params.update({k: v for k, v in context.settings.items() if v is not None})
+
+        existing = context.artifacts.get("transcripts")
+        if existing and not params.get("force_transcribe"):
+            logger.info("Transcripts already present; skipping STT step.")
+            context.ensure_step_store()["transcripts"] = existing
+            return {"transcripts": existing}
+
+        chunk_list = list(context.artifacts.get("chunks") or [])
+        has_chunks = bool(chunk_list)
+        targets: Iterable[str] = chunk_list if has_chunks else [str(context.asset.resolved_path())]
+
+        transcripts: List[Dict[str, Any]] = []
+        for idx, path in enumerate(list(targets)):
             text = ""
-            if label_with_stt:
+            try:
                 text = speech_to_text(
-                    str(split_audio_file), model_size=model_size, device=device
+                    path,
+                    model_size=params.get("model_size", self.model_size),
+                    device=params.get("device", self.device),
                 )
-            words_num = len(text.split()) if text else 0
-            if not text:
-                text = str(i)
+            except Exception as exc:  # pragma: no cover
+                logger.warning("Transcription failed for %s: %s", path, exc)
+            new_path = path
+            if has_chunks:
+                new_path = str(self._rename_chunk(Path(path), text, idx))
+                chunk_list[idx] = new_path
+            transcripts.append({"file": new_path, "text": text})
 
-            silence_chunk_end = AudioSegment.silent(duration=300 * words_num)
-            audio_chunk = chunk + silence_chunk_end
-            audio_chunk.export(
-                split_audio_file,
-                bitrate=bitrate,
-                format="wav",
-            )
-            final_path = target_dir / f"f{i}_{text}.wav"
-            split_audio_file.rename(final_path)
-
-        artifacts = ctx.setdefault("artifacts", {})
-        artifacts["split"] = {"target_dir": str(target_dir)}
-        artifacts["chunks"] = [
-            os.path.join(str(target_dir), name)
-            for name in natsorted(os.listdir(target_dir))
-            if name.endswith(".wav")
-        ]
-        return ctx
-
-    def teardown(self) -> None:
-        pass
+        context.artifacts["transcripts"] = transcripts
+        if has_chunks:
+            context.artifacts["chunks"] = chunk_list
+        context.ensure_step_store()["transcripts"] = transcripts
+        return {"transcripts": transcripts}
 
     @staticmethod
-    def _load_audio(path: Path) -> AudioSegment:
-        if path.suffix.lower() == ".mp3":
-            return AudioSegment.from_mp3(path)
-        if path.suffix.lower() == ".wav":
-            return AudioSegment.from_wav(path)
-        if path.suffix.lower() == ".m4a":
-            return AudioSegment.from_file(path, "m4a")
-        raise ValueError(f"Unsupported file format: {path}")
-
-    @staticmethod
-    def _match_target_amplitude(audio_segment: AudioSegment, target_dbfs: float) -> AudioSegment:
-        change = target_dbfs - audio_segment.dBFS
-        return audio_segment.apply_gain(change)
-
-
-class WhisperSTTService:
-    def __init__(self, options: dict[str, Any]):
-        self.options = options
-
-    def setup(self) -> None:
-        pass
-
-    def execute(self, ctx: StepContext, params: dict) -> StepContext:
-        artifacts = ctx.setdefault("artifacts", {})
-        chunk_paths = artifacts.get("chunks", [])
-        transcripts: list[dict[str, str]] = []
-        model_size = params.get("model_size") or self.options.get("model_size", "small")
-        device = params.get("device") or self.options.get("device")
-
-        for chunk_path in chunk_paths:
-            text = self._extract_from_filename(chunk_path)
-            if not text or params.get("force_transcribe", False):
-                text = speech_to_text(chunk_path, model_size=model_size, device=device)
-            transcripts.append({"file": chunk_path, "text": text})
-
-        artifacts["transcripts"] = transcripts
-        return ctx
-
-    def teardown(self) -> None:
-        pass
-
-    @staticmethod
-    def _extract_from_filename(path: str) -> str:
-        name = Path(path).stem
-        parts = name.split("_", 1)
-        if len(parts) == 2:
-            return parts[1]
-        return ""
+    def _rename_chunk(path: Path, text: str, index: int) -> Path:
+        snippet = (text or "").strip()
+        if not snippet:
+            return path
+        truncated = snippet[:50]
+        sanitized = re.sub(r"[\\/:*?\"<>|]", "", truncated)
+        sanitized = re.sub(r"\s+", "_", sanitized).strip("_")
+        if not sanitized:
+            return path
+        new_name = f"{index:04d}_{sanitized}.wav"
+        new_path = path.with_name(new_name)
+        try:
+            if new_path.exists():
+                return new_path
+            path.rename(new_path)
+            return new_path
+        except OSError:
+            return path
 
 
-class TranslatorService:
-    def __init__(self, options: dict[str, Any]):
-        self.options = options
+@dataclass
+class PlaybackService(BaseService):
+    repeats: int = 1
+    initial_repeats: Optional[int] = None
+    initial_threshold: Optional[int] = None
+    translate: bool = False
+    skip_first: bool = False
+    fs_multi: float = 1.0
+    dry_run: Optional[bool] = None
 
-    def setup(self) -> None:
-        pass
-
-    def execute(self, ctx: StepContext, params: dict) -> StepContext:
-        artifacts = ctx.setdefault("artifacts", {})
-        transcripts = artifacts.get("transcripts", [])
-        if not transcripts:
-            logger.warning("Translator step skipped because transcripts are missing.")
-            return ctx
-
-        translations: list[dict[str, str]] = []
-        for item in transcripts:
-            translated = traslate_text(item["text"])
-            translations.append({"file": item["file"], "text": item["text"], "translation": translated})
-
-        artifacts["translations"] = translations
-        return ctx
-
-    def teardown(self) -> None:
-        pass
-
-
-class TextToSpeechService:
-    def __init__(self, options: dict[str, Any]):
-        self.options = options
-
-    def setup(self) -> None:
-        pass
-
-    def execute(self, ctx: StepContext, params: dict) -> StepContext:
-        artifacts = ctx.setdefault("artifacts", {})
-        source = artifacts.get("translations") or artifacts.get("transcripts", [])
-        if not source:
-            logger.warning("TTS step skipped because no text source is available.")
-            return ctx
-
-        output_dir = Path(
-            params.get("output_dir", self.options.get("output_dir", Path("speaking_outputs")))
-        )
-        output_dir.mkdir(parents=True, exist_ok=True)
-
-        generated_files = []
-        for index, item in enumerate(source):
-            text = item.get("translation") or item.get("text")
-            save_path = output_dir / f"{ctx['asset'].id}_{index}.wav"
-            self._speak_text(text, str(save_path), params.get("play_audio", False))
-            generated_files.append(str(save_path))
-
-        artifacts["tts_outputs"] = generated_files
-        return ctx
-
-    def teardown(self) -> None:
-        pass
-
-
-class PlaybackService:
-    def __init__(self, options: dict[str, Any]):
-        self.options = options
-
-    def setup(self) -> None:
-        pass
-
-    def execute(self, ctx: StepContext, params: dict) -> StepContext:
-        artifacts = ctx.setdefault("artifacts", {})
-        chunk_paths = artifacts.get("chunks", [])
+    def run(self, context: StepContext) -> Dict[str, Any]:
+        params = self._merge_params(context.settings)
+        chunk_paths = list(context.artifacts.get("chunks") or [])
         if not chunk_paths:
-            logger.warning("Playback skipped because no chunks were generated.")
-            return ctx
+            chunk_paths = [str(context.asset.resolved_path())]
 
-        asset = ctx["asset"]
-        callbacks = ctx.get("callbacks", {})
-        on_progress = callbacks.get("on_progress")
-
-        start_file = params.get("start_file") or self.options.get("start_file")
-        translate = params.get("translate", self.options.get("translate", True))
-        repeats = params.get("repeats", self.options.get("repeats", 1))
-        initial_repeats = params.get(
-            "initial_repeats", self.options.get("initial_repeats", 1)
-        )
-        skip_first = params.get("skip_first", self.options.get("skip_first", True))
-        initial_threshold = params.get(
-            "initial_threshold", self.options.get("initial_threshold", 3)
-        )
-
-        start_index = 0
+        start_file = params.get("start_file")
+        start_idx = 0
         if start_file:
             for idx, path in enumerate(chunk_paths):
-                if Path(path).name == start_file:
-                    start_index = idx
+                if Path(path).name == Path(start_file).name:
+                    start_idx = idx
                     break
 
+        callback = context.get_callback("on_progress")
+        transcripts = context.artifacts.get("transcripts") or []
+        transcript_map = {Path(item["file"]).name: item.get("text", "") for item in transcripts if isinstance(item, dict)}
+
+        played_segments = 0
+        playback_seconds = 0.0
+        total_segments = len(chunk_paths[start_idx:])
         last_played = None
-        for idx, path in enumerate(chunk_paths):
-            if idx == 0 and skip_first:
+        translations: List[Dict[str, Any]] = []
+        session_limit = context.settings.get("max_session_seconds")
+        limit_seconds: Optional[float] = None
+        try:
+            limit_seconds = float(session_limit)
+        except (TypeError, ValueError):
+            limit_seconds = None
+        if limit_seconds and (context.asset.lang or "").lower().startswith("en"):
+            limit_seconds /= 4.0
+
+        for offset, path in enumerate(chunk_paths[start_idx:], start=start_idx):
+            if limit_seconds is not None and playback_seconds >= limit_seconds:
+                logger.info(
+                    "Reached playback time limit %.2fs for asset %s; stopping session.",
+                    limit_seconds,
+                    context.asset.id,
+                )
+                break
+            if params.get("skip_first") and offset == start_idx:
+                logger.info("Skipping first segment per configuration.")
                 continue
-            if idx < start_index:
-                continue
 
-            repeat_times = initial_repeats if idx < initial_threshold else repeats
-            if repeat_times <= 0:
-                continue
-
-            if callable(on_progress):
-                on_progress(Path(path).name, idx)
-
-            self._replay_single_audio(path, repeat_times, translate, asset.source_uri)
-            last_played = Path(path).name
-
-        artifacts["playback"] = {
-            "last_played": last_played,
-            "translate": translate,
-            "repeats": repeats,
-        }
-        return ctx
-
-    def teardown(self) -> None:
-        pass
-
-    @staticmethod
-    def _speak_text(text: str, save_file: str | None, play_audio_flag: bool) -> None:
-        from speaker_model import speak_text as do_speak_text  # local import to avoid heavy deps when unused
-
-        kwargs: dict[str, Any] = {"play_audio_flag": play_audio_flag}
-        if save_file is not None:
-            kwargs["save_file"] = save_file
-        do_speak_text(text, **kwargs)
-
-    @staticmethod
-    def _contains_japanese(text: str) -> bool:
-        japanese_pattern = re.compile(r"[\u3040-\u309F\u30A0-\u30FF\uFF66-\uFF9F]")
-        return bool(japanese_pattern.search(text))
-
-    def _replay_single_audio(self, file_path: str, repeats: int, translate: bool, audio_file: str) -> None:
-        number_list = [str(i) for i in list(range(200))]
-        filter_list = set(
-            [
-                "",
-                "ONE",
-                "TWO",
-                "THREE",
-                "FOUR",
-                "FIVE",
-                "SIX",
-                "SEVEN",
-                "EIGHT",
-                "NINE",
-                "TEN",
-                "HELLO",
-                "HI",
-                "HIYA",
-                "A",
-                "B",
-                "C",
-                "D",
-                "E",
-                "F",
-                "G",
-                "H",
-                "I",
-                "J",
-                "K",
-                "L",
-                "M",
-                "N",
-                "O",
-                "P",
-                "Q",
-                "R",
-                "S",
-                "T",
-                "U",
-                "V",
-                "W",
-                "X",
-                "Y",
-                "Z",
-                "picture one",
-                "picture two",
-                "picture too",
-                "picture three",
-                "picture four",
-                "picture five",
-                "picture six",
-                "picture seven",
-                "picture eight",
-                "picture nine",
-                "picture ten",
-                "pictures one",
-                "pictures two",
-                "pictures too",
-                "pictures three",
-                "pictures four",
-                "pictures five",
-                "pictures six",
-                "pictures seven",
-                "pictures eight",
-                "pictures nine",
-                "pictures ten",
-                "now you try",
-                "here is an example",
-                "read and find out",
-                "thank you",
-                "goodbye",
-                "good bye",
-                "see you later",
-                "see you soon",
-                "good night",
-                "nonsense",
-                "keywords",
-                *number_list,
-            ]
-        )
-        filter_list = {item.upper() for item in filter_list}
-
-        file_name = os.path.basename(file_path)
-        if file_name.endswith(".wav"):
-            time.sleep(0.1)
-            logger.info("replay_audio %s: %s", file_name.split(".")[0].split("_")[0], file_name)
-            name = file_name.split(".")[0].split("_")[1]
+            repeats = params.get("repeats", 1)
+            threshold = params.get("initial_threshold")
+            initial_repeats = params.get("initial_repeats")
             if (
-                "chapt" in name
-                or name.strip().upper() in filter_list
-                or len(name.replace(" ", "")) < 6
+                threshold is not None
+                and initial_repeats is not None
+                and (offset - start_idx) < int(threshold)
             ):
-                sub_repeats = 1
-            else:
-                sub_repeats = repeats
+                repeats = int(initial_repeats)
 
-            for i in range(1, sub_repeats + 1):
-                if translate:
-                    translated_name = traslate_text(name)
-                    if i == 2 and not self._contains_japanese(translated_name):
-                        self._speak_text(translated_name, save_file=None, play_audio_flag=True)
-                        time.sleep(0.1)
-                play_audio(file_path)
+            file_name = Path(path).name
+            transcript_text = transcript_map.get(file_name, "")
+            translation_text = None
+            if params.get("translate") and transcript_text:
+                translation_text = self._translate(transcript_text)
+                if translation_text:
+                    translations.append({"file": path, "translation": translation_text})
 
+            if callback:
+                callback(file_name, offset)
 
-def create_splitter(options: dict[str, Any]) -> BaseService:
-    return AudioSplitterService(options)
+            segment_seconds = self._segment_duration_seconds(path)
+            repeat_count = max(1, repeats)
+            for _ in range(repeat_count):
+                self._play(path, params)
+                playback_seconds += segment_seconds
+                time.sleep(1)
 
+            played_segments += 1
+            last_played = path
 
-def create_stt(options: dict[str, Any]) -> BaseService:
-    return WhisperSTTService(options)
+            if translation_text and params.get("speak_translation") and speak_text:
+                try:
+                    speak_text(translation_text, play_audio_flag=not params.get("dry_run", False))
+                except Exception as exc:  # pragma: no cover
+                    logger.warning("Speak translation failed: %s", exc)
 
+        playback_result = {
+            "last_played": last_played,
+            "segments_total": total_segments,
+            "segments_played": played_segments,
+            "translations": translations,
+            "seconds_played": playback_seconds,
+            "seconds_limit": limit_seconds,
+        }
+        context.artifacts["playback"] = playback_result
+        return playback_result
 
-def create_translator(options: dict[str, Any]) -> BaseService:
-    return TranslatorService(options)
+    def _merge_params(self, overrides: Dict[str, Any]) -> Dict[str, Any]:
+        params = {
+            "repeats": self.repeats,
+            "initial_repeats": self.initial_repeats,
+            "initial_threshold": self.initial_threshold,
+            "translate": self.translate,
+            "skip_first": self.skip_first,
+            "fs_multi": self.fs_multi,
+            "dry_run": self._default_dry_run(),
+        }
+        params.update({k: v for k, v in overrides.items() if v is not None})
+        return params
 
+    def _default_dry_run(self) -> bool:
+        if self.dry_run is not None:
+            return bool(self.dry_run)
+        env_flag = os.environ.get("WORKFLOW_DRY_RUN", "").lower()
+        return env_flag in {"1", "true", "yes"}
 
-def create_tts(options: dict[str, Any]) -> BaseService:
-    return TextToSpeechService(options)
+    def _play(self, path: str, params: Dict[str, Any]) -> None:
+        if params.get("dry_run"):
+            logger.info("Dry-run playback: %s", path)
+            return
+        try:
+            play_audio(path, fs_multi=float(params.get("fs_multi", 1.0)))
+        except Exception as exc:  # pragma: no cover
+            logger.warning("Playback failed for %s: %s", path, exc)
 
+    def _translate(self, text: str) -> Optional[str]:
+        if not traslate_text:
+            return None
+        try:
+            return traslate_text(text)
+        except Exception as exc:  # pragma: no cover
+            logger.warning("Translation failed: %s", exc)
+            return None
 
-def create_playback(options: dict[str, Any]) -> BaseService:
-    return PlaybackService(options)
+    @staticmethod
+    def _segment_duration_seconds(path: str) -> float:
+        try:
+            info = sf.info(path)
+            return float(info.duration)
+        except Exception:  # pragma: no cover
+            logger.warning("Failed to get duration for %s", path)
+            return 0.0

@@ -23,7 +23,7 @@ def traslate_text(text):
     response = client.chat(model='qwen3:14b', messages=[
         {
             'role': 'user',
-            'content': "请将这句英文翻译成中文{}。只给出翻译结果，不需要额外解释，注意简洁明了。".format(text),
+            'content': "请将这句英文翻译成中文{}。直接给出翻译结果，不需要多余的开场白和解释。".format(text),
         },
     ])
     ctx = response["message"]["content"]

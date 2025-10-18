@@ -71,9 +71,7 @@ with st.container(border=True):
                         impl="services.defaults.create_splitter",
                         options={
                             "min_silence_len": 500,
-                            "silence_thresh": 16,
-                            "model_size": "tiny",
-                            "device": "cpu",
+                            "silence_thresh": 16
                         },
                     ),
                     ServiceConfig(

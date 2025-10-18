@@ -1,43 +1,92 @@
-from typing import Any, Literal
+from __future__ import annotations
 
-from pydantic import BaseModel
+from typing import Any, Dict, Iterable, List, Mapping, Optional
 
-
-StepType = Literal["split", "transcribe", "translate", "speak", "quiz"]
+from pydantic import BaseModel, ConfigDict, Field
+from pathlib import Path
+from .taskmeta import TaskMeta
 
 
 class ServiceConfig(BaseModel):
-    """Runtime service description that can be resolved by the registry."""
+    """声明一个工作流服务实例，例如切分、识别或播放。"""
+    model_config = ConfigDict(extra="allow", arbitrary_types_allowed=True)
 
     name: str
     impl: str
-    options: dict[str, Any] = {}
+    options: Dict[str, Any] = Field(default_factory=dict)
 
 
 class StepConfig(BaseModel):
-    """Single workflow step executed by a specific service."""
+    """描述工作流中的一个步骤以及默认参数。"""
+
+    model_config = ConfigDict(extra="allow")
 
     id: str
-    type: StepType
+    type: str
     service: str
-    enabled: bool = True
-    params: dict[str, Any] = {}
+    params: Dict[str, Any] = Field(default_factory=dict)
+
+    def merged_params(self, overrides: Mapping[str, Any] | None = None) -> Dict[str, Any]:
+        """Merge step-level parameters with asset overrides."""
+        merged: Dict[str, Any] = dict(self.params)
+        if overrides:
+            merged.update({k: v for k, v in overrides.items() if v is not None})
+        return merged
 
 
-class AssetConfig(BaseModel):
-    """Input asset handled by the workflow (audio, text, etc.)."""
+class AssetConfig(TaskMeta):
+    """素材配置，继承 TaskMeta 用于跟踪播放进度。"""
 
-    id: str
-    source_uri: str
-    metadata: dict[str, Any] = {}
+    model_config = ConfigDict(extra="allow")
+
+    def __init__(self, **data: Any) -> None:
+        super().__init__(**data)
+        self.apply_lang_defaults()
+
+    def resolved_path(self) -> Path:
+        """Return the absolute path to the underlying audio asset."""
+        base = Path(self.source_uri)
+        if self.file_name:
+            return base / self.file_name
+        return base
+
+    def step_overrides(self, step_id: str) -> Mapping[str, Any]:
+        """Per-asset override parameters for a given step."""
+        return self.steps.get(step_id, {}) if self.steps else {}
 
 
 class WorkflowConfig(BaseModel):
-    """Declarative workflow definition."""
+    """顶层工作流配置，包含服务定义、步骤与素材。"""
+
+    model_config = ConfigDict(extra="allow")
 
     id: str
-    title: str
-    services: list[ServiceConfig]
-    steps: list[StepConfig]
-    assets: list[AssetConfig]
+    title: Optional[str] = None
+    max_session_seconds: Optional[int] = None
+    services: List[ServiceConfig] = Field(default_factory=list)
+    steps: List[StepConfig] = Field(default_factory=list)
+    assets: List[AssetConfig] = Field(default_factory=list)
 
+    def __init__(self, **data: Any) -> None:
+        super().__init__(**data)
+        self._ensure_unique_identifiers()
+
+    def service_map(self) -> Dict[str, ServiceConfig]:
+        return {svc.name: svc for svc in self.services}
+
+    def step_map(self) -> Dict[str, StepConfig]:
+        return {step.id: step for step in self.steps}
+
+    def iter_assets(self) -> Iterable[AssetConfig]:
+        return list(self.assets)
+
+    def _ensure_unique_identifiers(self) -> None:
+        service_names = {svc.name for svc in self.services}
+        if len(service_names) != len(self.services):
+            raise ValueError("Duplicate service names detected in workflow configuration.")
+        step_ids = {step.id for step in self.steps}
+        if len(step_ids) != len(self.steps):
+            raise ValueError("Duplicate step ids detected in workflow configuration.")
+        asset_ids = {asset.id for asset in self.assets}
+        if len(asset_ids) != len(self.assets):
+            raise ValueError("Duplicate asset ids detected in workflow configuration.")

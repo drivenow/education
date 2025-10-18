@@ -1,0 +1,4847 @@
+{
+  "id": "history_science_english_plan",
+  "title": "历史 科学 英语 周计划",
+  "services": [
+    {
+      "name": "splitter",
+      "impl": "services.defaults.create_splitter",
+      "options": {
+        "min_silence_len": 500,
+        "silence_thresh": 16
+      }
+    },
+    {
+      "name": "stt",
+      "impl": "services.defaults.create_stt",
+      "options": {
+        "model_size": "small",
+        "device": "cuda"
+      }
+    },
+    {
+      "name": "playback",
+      "impl": "services.defaults.create_playback",
+      "options": {
+        "repeats": 1,
+        "initial_repeats": 1,
+        "initial_threshold": 3,
+        "skip_first": true,
+        "translate": false
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "split",
+      "type": "split",
+      "service": "splitter"
+    },
+    {
+      "id": "transcribe",
+      "type": "transcribe",
+      "service": "stt"
+    },
+    {
+      "id": "play",
+      "type": "speak",
+      "service": "playback"
+    }
+  ],
+  "assets": [
+    {
+      "id": "item_a94b3132_001_01",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "01.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T22:48:05.992682+00:00",
+      "play_count": 1,
+      "progress_played": 145,
+      "progress_total": 145,
+      "last_item": "chunk0144.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_002_02",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "02.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T23:02:17.962155+00:00",
+      "play_count": 1,
+      "progress_played": 160,
+      "progress_total": 160,
+      "last_item": "chunk0159.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_003_03",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "03.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T23:16:38.021880+00:00",
+      "play_count": 1,
+      "progress_played": 168,
+      "progress_total": 168,
+      "last_item": "chunk0167.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_004_04",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "04.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T23:28:11.804325+00:00",
+      "play_count": 1,
+      "progress_played": 153,
+      "progress_total": 153,
+      "last_item": "chunk0152.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_005_05",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "05.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T23:37:00.277820+00:00",
+      "play_count": 1,
+      "progress_played": 119,
+      "progress_total": 119,
+      "last_item": "chunk0118.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_006_06",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "06.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T23:44:58.127384+00:00",
+      "play_count": 1,
+      "progress_played": 100,
+      "progress_total": 100,
+      "last_item": "chunk0099.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_007_07",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "07.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T23:54:31.317563+00:00",
+      "play_count": 1,
+      "progress_played": 119,
+      "progress_total": 119,
+      "last_item": "chunk0118.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_008_08",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "08.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T00:03:13.280526+00:00",
+      "play_count": 1,
+      "progress_played": 123,
+      "progress_total": 123,
+      "last_item": "chunk0122.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_009_09",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "09.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T00:10:37.330071+00:00",
+      "play_count": 1,
+      "progress_played": 95,
+      "progress_total": 95,
+      "last_item": "chunk0094.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_010_10",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "10.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T00:17:25.907670+00:00",
+      "play_count": 1,
+      "progress_played": 80,
+      "progress_total": 80,
+      "last_item": "chunk0079.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_011_11",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "11.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T00:31:25.040713+00:00",
+      "play_count": 1,
+      "progress_played": 203,
+      "progress_total": 203,
+      "last_item": "chunk0202.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_012_12",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "12.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T00:41:10.283973+00:00",
+      "play_count": 1,
+      "progress_played": 133,
+      "progress_total": 133,
+      "last_item": "chunk0132.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_013_13",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "13.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T00:51:32.181325+00:00",
+      "play_count": 1,
+      "progress_played": 138,
+      "progress_total": 138,
+      "last_item": "chunk0137.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_014_14",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "14.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T01:02:00.438616+00:00",
+      "play_count": 1,
+      "progress_played": 140,
+      "progress_total": 140,
+      "last_item": "chunk0139.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_015_15",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "15.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T01:07:49.981410+00:00",
+      "play_count": 1,
+      "progress_played": 77,
+      "progress_total": 77,
+      "last_item": "chunk0076.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_016_16",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "16.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T01:21:18.268966+00:00",
+      "play_count": 1,
+      "progress_played": 186,
+      "progress_total": 186,
+      "last_item": "chunk0185.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_017_17",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "17.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T01:37:54.735696+00:00",
+      "play_count": 1,
+      "progress_played": 249,
+      "progress_total": 249,
+      "last_item": "chunk0248.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_018_18",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "18.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T01:52:45.464128+00:00",
+      "play_count": 1,
+      "progress_played": 179,
+      "progress_total": 179,
+      "last_item": "chunk0178.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_019_19",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "19.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T02:01:52.180772+00:00",
+      "play_count": 1,
+      "progress_played": 107,
+      "progress_total": 107,
+      "last_item": "chunk0106.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_020_20",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "20.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T02:13:42.925335+00:00",
+      "play_count": 1,
+      "progress_played": 147,
+      "progress_total": 147,
+      "last_item": "chunk0146.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_021_21",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "21.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T02:27:22.908828+00:00",
+      "play_count": 1,
+      "progress_played": 171,
+      "progress_total": 171,
+      "last_item": "chunk0170.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_022_22",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "22.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T02:38:52.135554+00:00",
+      "play_count": 1,
+      "progress_played": 139,
+      "progress_total": 139,
+      "last_item": "chunk0138.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_023_23",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "23.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T02:50:28.135077+00:00",
+      "play_count": 1,
+      "progress_played": 141,
+      "progress_total": 141,
+      "last_item": "chunk0140.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_024_24",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "24.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T03:04:33.937969+00:00",
+      "play_count": 1,
+      "progress_played": 164,
+      "progress_total": 164,
+      "last_item": "chunk0163.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_025_25",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "25.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T03:17:34.892232+00:00",
+      "play_count": 1,
+      "progress_played": 162,
+      "progress_total": 162,
+      "last_item": "chunk0161.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_026_26",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "26.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T03:29:13.926781+00:00",
+      "play_count": 1,
+      "progress_played": 138,
+      "progress_total": 138,
+      "last_item": "chunk0137.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_027_27",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "27.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T03:39:57.980975+00:00",
+      "play_count": 1,
+      "progress_played": 128,
+      "progress_total": 128,
+      "last_item": "chunk0127.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_028_28",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "28.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T03:50:30.558927+00:00",
+      "play_count": 1,
+      "progress_played": 133,
+      "progress_total": 133,
+      "last_item": "chunk0132.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_029_29",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "29.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T04:03:34.698479+00:00",
+      "play_count": 1,
+      "progress_played": 187,
+      "progress_total": 187,
+      "last_item": "chunk0186.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_030_30",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "30.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T04:15:17.029282+00:00",
+      "play_count": 1,
+      "progress_played": 143,
+      "progress_total": 143,
+      "last_item": "chunk0142.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_031_31",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "31.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T04:26:33.631195+00:00",
+      "play_count": 1,
+      "progress_played": 143,
+      "progress_total": 143,
+      "last_item": "chunk0142.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_032_32",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "32.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T04:38:14.295350+00:00",
+      "play_count": 1,
+      "progress_played": 153,
+      "progress_total": 153,
+      "last_item": "chunk0152.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_033_33",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "33.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T04:50:36.770075+00:00",
+      "play_count": 1,
+      "progress_played": 141,
+      "progress_total": 141,
+      "last_item": "chunk0140.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_034_34",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "34.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T05:05:32.922705+00:00",
+      "play_count": 1,
+      "progress_played": 173,
+      "progress_total": 173,
+      "last_item": "chunk0172.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_035_35",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "35.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T05:16:01.704969+00:00",
+      "play_count": 1,
+      "progress_played": 128,
+      "progress_total": 128,
+      "last_item": "chunk0127.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_036_36",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "36.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T05:27:45.169832+00:00",
+      "play_count": 1,
+      "progress_played": 131,
+      "progress_total": 131,
+      "last_item": "chunk0130.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_037_37",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "37.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T05:39:51.952940+00:00",
+      "play_count": 1,
+      "progress_played": 137,
+      "progress_total": 137,
+      "last_item": "chunk0136.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_038_38",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "38.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T05:54:55.200705+00:00",
+      "play_count": 1,
+      "progress_played": 186,
+      "progress_total": 186,
+      "last_item": "chunk0185.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_039_39",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "39.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T06:04:43.442183+00:00",
+      "play_count": 1,
+      "progress_played": 111,
+      "progress_total": 111,
+      "last_item": "chunk0110.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_040_40",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "40.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T06:18:09.057354+00:00",
+      "play_count": 1,
+      "progress_played": 168,
+      "progress_total": 168,
+      "last_item": "chunk0167.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_041_41",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "41.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T06:29:17.003324+00:00",
+      "play_count": 1,
+      "progress_played": 142,
+      "progress_total": 142,
+      "last_item": "chunk0141.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_042_42",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "42.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T06:42:14.228934+00:00",
+      "play_count": 1,
+      "progress_played": 155,
+      "progress_total": 155,
+      "last_item": "chunk0154.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_043_43",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "43.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T06:55:42.480989+00:00",
+      "play_count": 1,
+      "progress_played": 199,
+      "progress_total": 199,
+      "last_item": "chunk0198.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_044_44",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "44.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T07:06:51.129050+00:00",
+      "play_count": 1,
+      "progress_played": 146,
+      "progress_total": 146,
+      "last_item": "chunk0145.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_045_45",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "45.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T07:18:18.164734+00:00",
+      "play_count": 1,
+      "progress_played": 129,
+      "progress_total": 129,
+      "last_item": "chunk0128.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_046_46",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "46.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T07:27:50.276852+00:00",
+      "play_count": 1,
+      "progress_played": 115,
+      "progress_total": 115,
+      "last_item": "chunk0114.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_047_47",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "47.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T07:39:50.049494+00:00",
+      "play_count": 1,
+      "progress_played": 139,
+      "progress_total": 139,
+      "last_item": "chunk0138.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_048_48",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "48.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T07:49:58.262837+00:00",
+      "play_count": 1,
+      "progress_played": 125,
+      "progress_total": 125,
+      "last_item": "chunk0124.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_049_49",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "49.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T08:00:58.659509+00:00",
+      "play_count": 1,
+      "progress_played": 124,
+      "progress_total": 124,
+      "last_item": "chunk0123.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_050_50",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "50.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T08:11:46.326928+00:00",
+      "play_count": 1,
+      "progress_played": 121,
+      "progress_total": 121,
+      "last_item": "chunk0120.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_051_51",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "51.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T08:22:31.840508+00:00",
+      "play_count": 1,
+      "progress_played": 116,
+      "progress_total": 116,
+      "last_item": "chunk0115.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_052_52",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "52.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T08:35:05.501263+00:00",
+      "play_count": 1,
+      "progress_played": 134,
+      "progress_total": 134,
+      "last_item": "chunk0133.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_053_53",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "53.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T08:47:09.165084+00:00",
+      "play_count": 1,
+      "progress_played": 122,
+      "progress_total": 122,
+      "last_item": "chunk0121.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_054_54",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "54.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T08:56:29.089296+00:00",
+      "play_count": 1,
+      "progress_played": 86,
+      "progress_total": 86,
+      "last_item": "chunk0085.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_055_55",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "55.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T09:08:30.723617+00:00",
+      "play_count": 1,
+      "progress_played": 146,
+      "progress_total": 146,
+      "last_item": "chunk0145.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_056_56",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "56.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T09:19:49.520058+00:00",
+      "play_count": 1,
+      "progress_played": 143,
+      "progress_total": 143,
+      "last_item": "chunk0142.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_057_57",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "57.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T09:32:27.996315+00:00",
+      "play_count": 1,
+      "progress_played": 146,
+      "progress_total": 146,
+      "last_item": "chunk0145.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_058_58",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "58.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T09:46:27.994262+00:00",
+      "play_count": 1,
+      "progress_played": 169,
+      "progress_total": 169,
+      "last_item": "chunk0168.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_059_59",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "59.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T10:00:32.123794+00:00",
+      "play_count": 1,
+      "progress_played": 156,
+      "progress_total": 156,
+      "last_item": "chunk0155.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_060_60",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "60.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T10:16:13.299005+00:00",
+      "play_count": 1,
+      "progress_played": 214,
+      "progress_total": 214,
+      "last_item": "chunk0213.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_061_61",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "61.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T10:25:45.292944+00:00",
+      "play_count": 1,
+      "progress_played": 122,
+      "progress_total": 122,
+      "last_item": "chunk0121.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_062_62",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "62.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T10:37:57.483292+00:00",
+      "play_count": 1,
+      "progress_played": 140,
+      "progress_total": 140,
+      "last_item": "chunk0139.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_063_63",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "63.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T10:50:32.936929+00:00",
+      "play_count": 1,
+      "progress_played": 170,
+      "progress_total": 170,
+      "last_item": "chunk0169.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_064_64",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "64.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T11:01:55.950747+00:00",
+      "play_count": 1,
+      "progress_played": 152,
+      "progress_total": 152,
+      "last_item": "chunk0151.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_065_65",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "65.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T11:13:08.858883+00:00",
+      "play_count": 1,
+      "progress_played": 142,
+      "progress_total": 142,
+      "last_item": "chunk0141.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_066_66",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "66.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T11:26:06.519129+00:00",
+      "play_count": 1,
+      "progress_played": 158,
+      "progress_total": 158,
+      "last_item": "chunk0157.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_067_67",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "67.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T11:39:01.751519+00:00",
+      "play_count": 1,
+      "progress_played": 166,
+      "progress_total": 166,
+      "last_item": "chunk0165.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_068_68",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "68.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T11:51:02.842721+00:00",
+      "play_count": 1,
+      "progress_played": 133,
+      "progress_total": 133,
+      "last_item": "chunk0132.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_069_69",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "69.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T12:05:18.542241+00:00",
+      "play_count": 1,
+      "progress_played": 188,
+      "progress_total": 188,
+      "last_item": "chunk0187.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_070_70",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "70.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T12:19:02.607156+00:00",
+      "play_count": 1,
+      "progress_played": 187,
+      "progress_total": 187,
+      "last_item": "chunk0186.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_071_71",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "71.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T12:32:26.665998+00:00",
+      "play_count": 1,
+      "progress_played": 154,
+      "progress_total": 154,
+      "last_item": "chunk0153.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_072_72",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "72.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T12:43:37.027097+00:00",
+      "play_count": 1,
+      "progress_played": 137,
+      "progress_total": 137,
+      "last_item": "chunk0136.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_073_73",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "73.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T12:55:34.899733+00:00",
+      "play_count": 1,
+      "progress_played": 131,
+      "progress_total": 131,
+      "last_item": "chunk0130.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_074_74",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "74.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T13:07:52.221656+00:00",
+      "play_count": 1,
+      "progress_played": 154,
+      "progress_total": 154,
+      "last_item": "chunk0153.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_075_75",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "75.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T13:23:22.342923+00:00",
+      "play_count": 1,
+      "progress_played": 171,
+      "progress_total": 171,
+      "last_item": "chunk0170.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_076_76",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "76.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T13:34:30.879251+00:00",
+      "play_count": 1,
+      "progress_played": 141,
+      "progress_total": 141,
+      "last_item": "chunk0140.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_077_77",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "77.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T13:45:19.717636+00:00",
+      "play_count": 1,
+      "progress_played": 132,
+      "progress_total": 132,
+      "last_item": "chunk0131.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_078_78",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "78.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T13:57:43.873638+00:00",
+      "play_count": 1,
+      "progress_played": 122,
+      "progress_total": 122,
+      "last_item": "chunk0121.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_079_79",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "79.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-17T14:08:52.422322+00:00",
+      "play_count": 1,
+      "progress_played": 131,
+      "progress_total": 131,
+      "last_item": "chunk0130.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_080_80",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "80.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-18T16:02:21.879878+00:00",
+      "play_count": 1,
+      "progress_played": 1,
+      "progress_total": 1,
+      "last_item": ".wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_081_81",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "81.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-18T16:05:23.599788+00:00",
+      "play_count": 1,
+      "progress_played": 2,
+      "progress_total": 2,
+      "last_item": "tmp_chunk0001.wav",
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_082_82",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "82.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_083_83",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "83.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_084_84",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "84.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_085_85",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "85.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_086_86",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "86.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_087_87",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "87.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_088_88",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "88.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_089_89",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "89.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_090_90",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "90.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_091_91",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "91.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_092_92",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "92.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_093_93",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "93.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_094_94",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "94.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_a94b3132_095_95",
+      "source_uri": "X://BaiduNetdiskDownload/陈卫平写给儿童的中国历史",
+      "file_name": "95.mp3",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Mon",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:00.002685+00:00",
+      "update_time": "2025-10-16T16:13:00.002685+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 900
+    },
+    {
+      "id": "item_7740fdb7_001_item_5361dda7",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "【讨论】阴阳五行是否该入《准》（下）.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_002_01",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：01火星上的细线.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_003_02",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：02望远镜的革命.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_004_03",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：03飞碟罗斯威尔和系外行星.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_005_04",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：04奥兹玛计划.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_006_05",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：05巡天神器.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_007_06",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：06送给外星人的礼物.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_008_07",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：07阿雷西博信息和金唱片.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_009_08",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：08人类是否应当主动呼叫外星人（多位主播客串）.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_010_09",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：09望远镜阵列和冯诺依曼机器人.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_011_10",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：10解剖外星人和系外行星.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_012_11",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：11行星凌日、圣马力诺标度和国际公约.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_013_12",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：12“他们”来了！.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_014_13_ufo",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：13（春节加长版）UFO和费米悖论.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_015_14",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：14深入剖析费米悖论.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_016_15",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：15宇宙动物园和黑暗森林.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_017_16",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：16宇宙珍稀动物.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_018_17",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：17人类的幸运和不幸.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_019_18",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：18分析外星人入侵的目的.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_020_19",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：19行星防御计划纲要（绝密）.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_021_20",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：20如何与外星人战斗.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_022_21",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：21悟空之战（上）.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_023_22",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：22悟空之战（中）.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_024_23",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "亿万年的孤独：23（大结局）悟空之战（下）.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_025_item_2dbf7f4d",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "六一特别节目：起底《科学史评话》主播吴京平老师的私生活.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_026_item_0ff048fc",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "加餐：《日暮》（听众音乐王子版）.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_027_01",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "发刊词：01科学精神比科学故事更重要.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_028_02",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "宇宙自然生命简史 02冥王星和我们的太阳系.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_029_01",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "宇宙自然生命简史：01宇宙的诞生.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_030_03",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "宇宙自然生命简史：03太阳系和外星人.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_031_04",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "宇宙自然生命简史：04寻找超新星.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_032_05",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "宇宙自然生命简史：05超新星和生命.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_033_06",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "宇宙自然生命简史：06丈量地球.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_034_07",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "宇宙自然生命简史：07丈量太阳系.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_035_08",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "宇宙自然生命简史：08给地球称重.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_036_02",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：02大地的形状.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_037_03",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：03日月星辰的变化.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_038_04",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：04古代天文学之大成.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_039_05",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：05中国古代天文学思想.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_040_06",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：06哥白尼单挑托勒密.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_041_07",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：07开普勒三定律.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_042_08",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：08伽利略的证明.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_043_09",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：09牛顿的天体力学.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_044_10",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：10恒星不恒.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_045_11",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：11天文学第一问题.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_046_12",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：12初窥银河.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_047_13",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：13揭秘银河.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_048_14",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：14膨胀中的宇宙.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_049_15",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：15宇宙大爆炸.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_050_16",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：16暴胀的宇宙.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_051_17",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：17哈勃深空场.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_052_18",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：18暗物质和暗能量.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_053_19",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：19宇宙有限还是无限.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_054_20",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：20最后的问题（一）.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_055_21",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：21最后的问题（二）.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_056_22",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：22探索永无止尽.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_057_23",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "星空的琴弦：23补二十世纪射电天文学四大发现（全集完）.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_058_item_88b81a95",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "特别节目：轻松看懂光量子计算机这条大.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_059_item_11be222f",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "讨论：我们对科学和哲学的认识_成片.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "item_7740fdb7_060_item_c68d8654",
+      "source_uri": "X://RAG_192.168.1.2/audio/科学有故事",
+      "file_name": "讨论：阴阳五行是否该入《准》（上）.m4a",
+      "lang": "zh",
+      "is_valid": true,
+      "crontab": "Tue",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:08.087982+00:00",
+      "update_time": "2025-10-16T16:13:08.087982+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": false,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 1200
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_001_fun_for_starters_fourth_edition_02_01b_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 02 - 01B 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_002_fun_for_starters_fourth_edition_03_01d_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 03 - 01D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_003_fun_for_starters_fourth_edition_04_01f_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 04 - 01F 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_004_fun_for_starters_fourth_edition_05_02d_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 05 - 02D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_005_fun_for_starters_fourth_edition_06_03c_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 06 - 03C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_006_fun_for_starters_fourth_edition_07_03e_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 07 - 03E 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_007_fun_for_starters_fourth_edition_08_04d_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 08 - 04D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_008_fun_for_starters_fourth_edition_09_05d_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 09 - 05D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_009_fun_for_starters_fourth_edition_10_08b_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 10 - 08B 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_010_fun_for_starters_fourth_edition_11_09h_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 11 - 09H 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_011_fun_for_starters_fourth_edition_12_11c_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 12 - 11C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_012_fun_for_starters_fourth_edition_13_13b_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 13 - 13B 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_013_fun_for_starters_fourth_edition_14_16d_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 14 - 16D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_014_fun_for_starters_fourth_edition_15_17c_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 15 - 17C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_015_fun_for_starters_fourth_edition_16_17f_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 16 - 17F 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_016_fun_for_starters_fourth_edition_17_18b_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 17 - 18B 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_017_fun_for_starters_fourth_edition_18_19b_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 18 - 19B 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_018_fun_for_starters_fourth_edition_19_19f_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 19 - 19F 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_019_fun_for_starters_fourth_edition_20_20d_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 20 - 20D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_020_fun_for_starters_fourth_edition_21_21d_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 21 - 21D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_021_fun_for_starters_fourth_edition_22_23c_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 22 - 23C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_022_fun_for_starters_fourth_edition_23_25b_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 23 - 25B 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_023_fun_for_starters_fourth_edition_24_25d_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 24 - 25D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_024_fun_for_starters_fourth_edition_25_26a_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 25 - 26A 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_025_fun_for_starters_fourth_edition_26_27d_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 26 - 27D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_026_fun_for_starters_fourth_edition_27_32a_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 27 - 32A 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_027_fun_for_starters_fourth_edition_28_33e_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 28 - 33E 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_028_fun_for_starters_fourth_edition_29_34c_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 29 - 34C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_029_fun_for_starters_fourth_edition_30_34e_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 30 - 34E 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_030_fun_for_starters_fourth_edition_31_35f_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 31 - 35F 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_031_fun_for_starters_fourth_edition_32_36a_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 32 - 36A 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_032_fun_for_starters_fourth_edition_33_36c_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 33 - 36C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_033_fun_for_starters_fourth_edition_34_37d_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 34 - 37D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_034_fun_for_starters_fourth_edition_35_40d_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 35 - 40D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_035_fun_for_starters_fourth_edition_36_41c_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 36 - 41C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_036_fun_for_starters_fourth_edition_37_42e_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 37 - 42E 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_037_fun_for_starters_fourth_edition_38_43f_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 38 - 43F 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    },
+    {
+      "id": "fun_for_starters_4th_edition_2017_class_audio_cd_038_fun_for_starters_fourth_edition_39_44a_1",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 39 - 44A 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "crontab": "Wed",
+      "completed": false,
+      "create_time": "2025-10-16T16:13:16.585929+00:00",
+      "update_time": "2025-10-16T16:13:16.585929+00:00",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false
+        }
+      },
+      "max_session_seconds": 600
+    }
+  ],
+  "updated_at": "2025-10-16T16:13:00.002685+00:00"
+}

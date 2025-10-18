@@ -186,7 +186,7 @@ def speak_text(text,  language = "简体中文", role_id = 0, save_file = "file_
                 else:
                     logger.info("生成语音失败: {}".format(result))
         else:
-            fs_multi = 1.1
+            fs_multi = 1.5
             if not os.path.exists(chunk_path):
                 api_text_to_speech(chunk, chunk_path)
         temp_files.append(chunk_path)
