@@ -9,7 +9,7 @@ def traslate_text(text):
     from langchain_community.llms import Ollama
     global llm
     if not llm:
-        Ollama(base_url="http://192.168.1.2:11434", model="qwen3:14b")
+        Ollama(base_url="http://192.168.1.2:11434", model="qwen3:8b")
     # Initialize the Ollama LLM
     # Generate text from the model
     response = llm.invoke("以下是小学一年级课本中的教学课文的英文语句，请将这句英文翻译成中文{}, 请通顺翻译，并且只需要翻译结果，不需要额外解释。".format(text))
@@ -20,7 +20,7 @@ def traslate_text(text):
     if not clinet:
         from ollama import Client
         client = Client(host='http://192.168.1.2:11434')
-    response = client.chat(model='qwen3:14b', messages=[
+    response = client.chat(model='qwen3:8b', messages=[
         {
             'role': 'user',
             'content': "请将这句英文翻译成中文{}。直接给出翻译结果，不需要多余的开场白和解释。".format(text),

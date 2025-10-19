@@ -26,7 +26,6 @@ class TaskMeta(BaseModel):
     file_name: str | None = None
     lang: str | None = None
     is_valid: bool = True
-    crontab: str | None = None
     completed: bool = False
     status: str | None = None
     create_time: str | None = None
@@ -42,7 +41,6 @@ class TaskMeta(BaseModel):
         "file_name",
         "lang",
         "is_valid",
-        "crontab",
         "steps",
     )
 

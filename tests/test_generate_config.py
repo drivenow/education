@@ -50,7 +50,7 @@ class GenerateConfigTestCase(unittest.TestCase):
         (audio_dir / "01.mp3").write_bytes(b"")
         output_path = self.base / "zh_config.json"
 
-        self._run_script(audio_dir, "zh", output_path, extra_args=["--crontab", "Mon"])
+        self._run_script(audio_dir, "zh", output_path)
 
         data = json.loads(output_path.read_text(encoding="utf-8"))
         self.assertEqual(data["assets"][0]["lang"], "zh")
@@ -59,7 +59,6 @@ class GenerateConfigTestCase(unittest.TestCase):
         self.assertTrue(split_cfg.get("enabled", False))
         self.assertFalse(play_cfg.get("translate", True))
         self.assertEqual(play_cfg.get("skip_first"), False)
-        self.assertEqual(data["assets"][0]["crontab"], "Mon")
         self.assertEqual(data["assets"][0]["progress_played"], 0)
         self.assertEqual(data["assets"][0]["progress_total"], 0)
 

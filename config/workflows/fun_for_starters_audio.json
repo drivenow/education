@@ -1,0 +1,872 @@
+{
+  "id": "fun_for_starters_audio",
+  "title": "Fun for Starters Audio",
+  "services": [
+    {
+      "name": "splitter",
+      "impl": "services.defaults.create_splitter",
+      "options": {
+        "min_silence_len": 500,
+        "silence_thresh": 16
+      }
+    },
+    {
+      "name": "stt",
+      "impl": "services.defaults.create_stt",
+      "options": {
+        "model_size": "small",
+        "device": "cuda"
+      }
+    },
+    {
+      "name": "playback",
+      "impl": "services.defaults.create_playback",
+      "options": {
+        "repeats": 1,
+        "initial_repeats": 1,
+        "initial_threshold": 3,
+        "skip_first": true,
+        "translate": true
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "split",
+      "type": "split",
+      "service": "splitter"
+    },
+    {
+      "id": "transcribe",
+      "type": "transcribe",
+      "service": "stt"
+    },
+    {
+      "id": "play",
+      "type": "speak",
+      "service": "playback"
+    }
+  ],
+  "assets": [
+    {
+      "id": "Fun For Starters Fourth Edition - 06 - 03C 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 06 - 03C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": true,
+      "status": "completed",
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T16:36:12",
+      "play_count": 1,
+      "progress_played": 68,
+      "progress_total": 68,
+      "last_item": "0067_Kay.wav",
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 07 - 03E 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 07 - 03E 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 08 - 04D 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 08 - 04D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 09 - 05D 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 09 - 05D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 10 - 08B 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 10 - 08B 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 11 - 09H 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 11 - 09H 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 12 - 11C 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 12 - 11C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 13 - 13B 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 13 - 13B 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 14 - 16D 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 14 - 16D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 15 - 17C 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 15 - 17C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 16 - 17F 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 16 - 17F 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 17 - 18B 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 17 - 18B 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 18 - 19B 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 18 - 19B 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 19 - 19F 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 19 - 19F 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 20 - 20D 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 20 - 20D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 21 - 21D 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 21 - 21D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 22 - 23C 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 22 - 23C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 23 - 25B 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 23 - 25B 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 24 - 25D 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 24 - 25D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 25 - 26A 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 25 - 26A 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 26 - 27D 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 26 - 27D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 27 - 32A 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 27 - 32A 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 28 - 33E 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 28 - 33E 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 29 - 34C 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 29 - 34C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 30 - 34E 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 30 - 34E 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 31 - 35F 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 31 - 35F 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 32 - 36A 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 32 - 36A 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 33 - 36C 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 33 - 36C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 34 - 37D 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 34 - 37D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 35 - 40D 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 35 - 40D 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 36 - 41C 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 36 - 41C 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 37 - 42E 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 37 - 42E 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 38 - 43F 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 38 - 43F 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    },
+    {
+      "id": "Fun For Starters Fourth Edition - 39 - 44A 1.mp3",
+      "source_uri": "X://BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD",
+      "file_name": "Fun For Starters Fourth Edition - 39 - 44A 1.mp3",
+      "lang": "en",
+      "is_valid": true,
+      "completed": false,
+      "create_time": "2025-10-19T15:40:03",
+      "update_time": "2025-10-19T15:40:03",
+      "play_count": 0,
+      "progress_played": 0,
+      "progress_total": 0,
+      "steps": {
+        "split": {
+          "enabled": true,
+          "label_with_stt": true
+        },
+        "play": {
+          "translate": true,
+          "skip_first": false,
+          "repeats": 2
+        }
+      }
+    }
+  ],
+  "updated_at": "2025-10-19T15:40:03",
+  "max_session_seconds": 60
+}

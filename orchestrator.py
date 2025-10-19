@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from typing import Any, Dict, Iterable, Iterator, Optional
-
+import time
 from models.workflow import AssetConfig, StepConfig, WorkflowConfig
 from services.base import StepContext
 from services.registry import ServiceRegistry
@@ -12,6 +12,7 @@ class Orchestrator:
 
     def __init__(self, workflow: WorkflowConfig, registry: Optional[ServiceRegistry] = None) -> None:
         self.workflow = workflow
+        self.session_limit = workflow.max_session_seconds or 30*60
         self.registry = registry or ServiceRegistry()
         self._services: Dict[str, Any] = {}
 
@@ -21,8 +22,12 @@ class Orchestrator:
         *,
         extra_context: Optional[Dict[str, Any]] = None,
     ) -> Iterator[Dict[str, Any]]:
+        t1 = time.time()
         iterable = assets or self.workflow.assets
         for asset in iterable:
+            t2 = time.time()
+            if t2 - t1 > self.session_limit*0.95:
+                raise TimeoutError(f"Asset {asset.id} stop after {t2 - t1} seconds")
             yield self.run_asset(asset, extra_context=extra_context)
 
     def run_asset(
@@ -33,12 +38,10 @@ class Orchestrator:
     ) -> Dict[str, Any]:
         artifacts: Dict[str, Any] = {}
         step_results: list[Dict[str, Any]] = []
-        extras = dict(extra_context or {})
-
+        extras = dict[str, Any](extra_context or {})
         for step in self.workflow.steps:
             result = self._run_step(step, asset, artifacts, extras)
-            step_results.append({"id": step.id})
-
+            step_results.append({"id": step.id, "result": result})
         return {"asset": asset, "artifacts": artifacts}
 
     # --------------------------------------------------------------------- utils

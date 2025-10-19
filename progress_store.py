@@ -145,7 +145,7 @@ class ProgressStore:
 
     def _now(self) -> str:
         """Return the current UTC timestamp as an ISO string."""
-        return datetime.now(timezone.utc).isoformat().replace("+08:00", "Z")
+        return datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
     def _load(self) -> None:
         """Load persisted data from disk into memory."""

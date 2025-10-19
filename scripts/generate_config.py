@@ -3,16 +3,16 @@ from __future__ import annotations
 import argparse
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime
 import hashlib
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Optional
 
 AUDIO_EXTS = {".mp3", ".m4a", ".wav", ".flac", ".aac"}
 
 
 def utc_now() -> str:
-    return datetime.now(timezone.utc).isoformat().replace("+08:00", "Z")
+    return datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
 
 def slugify(value: str) -> str:
@@ -49,11 +49,11 @@ def default_steps_for_lang(lang: str) -> dict[str, dict]:
     if lang_lower.startswith("en"):
         return {
             "split": {"enabled": True, "label_with_stt": True},
-            "play": {"translate": True, "skip_first": False},
+            "play": {"translate": True, "skip_first": False, "repeats": 2},
         }
     return {
-        "split": {"enabled": True, "label_with_stt": False},
-        "play": {"translate": False, "skip_first": False},
+        "split": {"enabled": False, "label_with_stt": False},
+        "play": {"translate": False, "skip_first": False, "repeats": 1},
     }
 
 
@@ -63,16 +63,16 @@ def build_asset(
     directory: Path,
     file_path: Path,
     lang: str,
-    crontab: str | None,
     timestamp: str,
+    mnt_convert: bool = False,
 ) -> dict:
+    print(directory, mnt_convert)
     return {
-        "id": f"{dir_slug}_{index:03d}_{slugify(file_path.stem)}",
-        "source_uri": normalize_path(directory),
+        "id": file_path.name,#f"{dir_slug}_{index:03d}_{slugify(file_path.stem)}",
+        "source_uri": normalize_path(directory) if mnt_convert else directory.as_posix(),
         "file_name": file_path.name,
         "lang": lang,
         "is_valid": True,
-        "crontab": crontab,
         "completed": False,
         "status": None,
         "create_time": timestamp,
@@ -84,7 +84,6 @@ def build_asset(
         "steps": default_steps_for_lang(lang),
     }
 
-
 def build_config(
     directory: Path,
     files: Iterable[Path],
@@ -92,16 +91,16 @@ def build_config(
     config_id: str,
     title: str,
     lang: str,
-    crontab: str | None,
     max_session_seconds: Optional[int] = None,
+    mnt_convert: bool = False,
 ) -> dict:
     timestamp = utc_now()
     dir_slug = slugify(directory.name)
     assets = [
-        build_asset(dir_slug, idx, directory, file_path, lang, crontab, timestamp)
+        build_asset(dir_slug, idx, directory, file_path, lang, timestamp, mnt_convert)
         for idx, file_path in enumerate(files, start=1)
     ]
-
+    
     services = [
         {
             "name": "splitter",
@@ -158,8 +157,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", required=True, help="Output config path (JSON).")
     parser.add_argument("--config-id", help="Config id, defaults to <dir>_<lang> slug.")
     parser.add_argument("--title", help="Config title.")
-    parser.add_argument("--crontab", help="Optional crontab/day tag, e.g. Mon.")
     parser.add_argument("--max-session-seconds", type=int, help="Optional max playback seconds per session.")
+    parser.add_argument("--mnt-convert", type=int, default=1, help="Convert paths to Windows-style if on mounted drive.")
     return parser.parse_args()
 
 
@@ -179,6 +178,7 @@ def main() -> None:
 
     config_id = args.config_id or f"{slugify(directory.name)}_{args.lang.lower()}"
     title = args.title or f"{directory.name} ({args.lang})"
+    mnt_convert = True if args.mnt_convert else False
 
     config = build_config(
         directory=directory,
@@ -186,8 +186,8 @@ def main() -> None:
         config_id=config_id,
         title=title,
         lang=args.lang,
-        crontab=args.crontab,
         max_session_seconds=args.max_session_seconds,
+        mnt_convert=mnt_convert,
     )
 
     output_path = Path(args.output).expanduser()
@@ -198,3 +198,14 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+"""
+python scripts/generate_config.py \
+  --directory "/mnt/x/BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD" \
+  --lang en \
+  --config-id fun_for_starters_audio \
+  --title "Fun for Starters Audio" \
+  --output config/workflows/mnt_fun_for_starters_audio.json \
+  --max-session-seconds 60 
+  --mnt-convert 0
+"""

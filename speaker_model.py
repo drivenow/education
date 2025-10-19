@@ -5,6 +5,7 @@ sys.path.append("D:/voice/VITStuning")
 from logger import logger
 import torch
 import re
+import numpy as np
 from torch import no_grad, LongTensor
 import VITStuning.commons
 import VITStuning.utils
@@ -12,6 +13,7 @@ from VITStuning.models import SynthesizerTrn
 from VITStuning.text import text_to_sequence
 from audio_utils import write_audio, play_audio, format_folder_name
 from pydub import AudioSegment
+import sounddevice as sd
 import gradio
 import librosa
 
@@ -160,7 +162,43 @@ def split_text_by_period(text, length=200):
     # 过滤可能存在的空段落
     return [p for p in paragraphs if p]
 
-def speak_text(text,  language = "简体中文", role_id = 0, save_file = "file_trim_5s.wav", play_audio_flag = True, use_api = True):
+
+# ===== 工具函数 =====
+def _bytes_wav_to_segment(wav_bytes: bytes) -> AudioSegment:
+    return AudioSegment.from_file(io.BytesIO(wav_bytes), format="wav")
+
+def _ndarray_to_segment(y: np.ndarray, sr: int) -> AudioSegment:
+    """假设 y 为 float32 [-1,1] 或 int16，单声道或多声道均可。"""
+    if y.dtype != np.int16:
+        y16 = np.clip(y, -1.0, 1.0)
+        y16 = (y16 * 32767.0).astype(np.int16)
+    else:
+        y16 = y
+    channels = 1 if y16.ndim == 1 else y16.shape[1]
+    raw = y16.tobytes(order="C")
+    return AudioSegment(
+        data=raw,
+        sample_width=2,
+        frame_rate=sr,
+        channels=channels,
+    )
+
+def _segment_to_array(seg: AudioSegment):
+    """AudioSegment -> (sr, float32[-1,1] ndarray)"""
+    samples = np.array(seg.get_array_of_samples())
+    if seg.channels > 1:
+        samples = samples.reshape((-1, seg.channels))
+    y = samples.astype(np.float32) / (2 ** (8 * seg.sample_width - 1))
+    return seg.frame_rate, y
+
+def _play_array(y: np.ndarray, sr: int, speed: float = 1.0, gain: float = 1.0):
+    y = (y.astype(np.float32) * float(gain))
+    y = np.clip(y, -1.0, 1.0)
+    sd.play(y, int(sr * float(speed)), blocking=True)
+
+
+
+def speak_text(text,  language = "简体中文", role_id = 0, save_file = "file_trim_5s.wav", play_audio_flag = True, use_api = False):
     global tts_fn
     if not tts_fn:
         tts_fn = create_model(role_id = role_id)
@@ -178,7 +216,8 @@ def speak_text(text,  language = "简体中文", role_id = 0, save_file = "file_
         # 根据需要设置输入参数的值
         # text, speaker, language, speed = "你好，世界！", "rosalia", '简体中文', 1.0
         if not use_api:
-            fs_multi = 1.0
+            fs_multi = 1.1
+            gain = 1.1
             if not os.path.exists(chunk_path):
                 result, audio = tts_fn(chunk, language)
                 if result == "Success":
@@ -186,7 +225,8 @@ def speak_text(text,  language = "简体中文", role_id = 0, save_file = "file_
                 else:
                     logger.info("生成语音失败: {}".format(result))
         else:
-            fs_multi = 1.5
+            fs_multi = 1.1
+            gain=1.5
             if not os.path.exists(chunk_path):
                 api_text_to_speech(chunk, chunk_path)
         temp_files.append(chunk_path)
@@ -198,21 +238,79 @@ def speak_text(text,  language = "简体中文", role_id = 0, save_file = "file_
     combined_audio.export(save_file, format="wav")
 
     # # 清理临时文件
-    # for tf in temp_files:
-    #     os.remove(tf)
+    for tf in temp_files:
+        os.remove(tf)
 
     # 根据参数决定是否播放最终音频
     if play_audio_flag:
-        play_audio(save_file, fs_multi=fs_multi)
+        play_audio(save_file, fs_multi=fs_multi, gain=gain)
 
+
+# ===== 主函数：纯内存拼接 & 播放 =====
+def speak_text_nofile(
+    text,
+    language="简体中文",
+    role_id=0,
+    play_audio_flag=True,
+    use_api=False,
+    fs_multi=1.0,     # 替代原 fs_multi
+    gain=1.0,      # 音量倍数
+):
+    """
+    纯内存：不写入任何临时 wav 文件。目前转文本有问题
+    需要：
+      - tts_fn(chunk, language) -> ("Success", <numpy 或 wav bytes 或 (sr, np.ndarray)>)
+      - 若 use_api=True，建议提供 api_text_to_speech_bytes(text) -> wav bytes
+    """
+    global tts_fn
+    if not tts_fn:
+        tts_fn = create_model(role_id=role_id)
+
+    chunks = split_text_by_period(text)
+    combined = AudioSegment.silent(duration=0)
+
+    for chunk in chunks:
+        # === 生成分段音频到内存 ===
+        if not use_api:
+            result, audio = tts_fn(chunk, language)
+            if result != "Success":
+                logger.info(f"生成语音失败: {result}")
+                continue
+
+            # 统一转为 AudioSegment
+            if isinstance(audio, (bytes, bytearray)):
+                seg = _bytes_wav_to_segment(bytes(audio))
+            elif isinstance(audio, tuple) and len(audio) == 2 and isinstance(audio[0], int):
+                # (sr, ndarray)
+                sr, y = audio
+                seg = _ndarray_to_segment(np.asarray(y), sr)
+            elif isinstance(audio, np.ndarray):
+                # 需要你在 tts_fn 中同时返回 sr，若没有，可设一个默认 sr
+                raise ValueError("tts_fn 返回 ndarray 需要同时提供采样率 sr")
+            else:
+                raise TypeError("无法识别 tts_fn 的返回音频类型")
+        else:
+            # 建议提供返回 bytes 的 API
+            wav_bytes = api_text_to_speech_bytes(chunk)  # 需要你实现：返回 WAV bytes
+            seg = _bytes_wav_to_segment(wav_bytes)
+
+        # === 拼接分段 ===
+        combined += seg
+
+    if play_audio_flag and len(combined) > 0:
+        sr, y = _segment_to_array(combined)
+        _play_array(y, sr, speed=fs_multi, gain=gain)
+
+    return combined  # 如需后续再处理，可把合成后的 AudioSegment 返回
 
 if __name__=="__main__":
     base_dir = "D:\\story_pictures\\kehuanshijie\\precessed_txt"
     file_name = r"藏宝盒.txt"
-    base_dir = "D:\\story_pictures\\1\\processed"
-    file_name = r"飞行员.txt"
+    # base_dir = "D:\\story_pictures\\1\\processed"
+    # file_name = r"飞行员.txt"
     content = "\n".join(open(os.path.join(base_dir, file_name), 'r', encoding='utf-8').readlines())
-    speak_text(content, role_id = 0, save_file = file_name.replace(".txt", ".wav"), play_audio_flag = False)
+    # speak_text(content, role_id = 0, save_file = file_name.replace(".txt", ".wav"), play_audio_flag = False)
+    speak_text_nofile(content, role_id = 0, play_audio_flag = True)    
 
 
 

@@ -14,16 +14,16 @@ now_date = datetime.datetime.now().strftime('%Y-%m-%d')
 
 # 创建一个 logger
 logger = logging.getLogger("my_logger")
-logger.setLevel(logging.INFO)  # 设置日志级别为 DEBUG，记录所有级别的日志
+logger.setLevel(logging.WARNING)  # 设置日志级别为 DEBUG，记录所有级别的日志
 
 # 创建一个处理器，输出到文本文件
 makedirs("logs", exist_ok=True)
 file_handler = logging.FileHandler("logs/{}.log".format(now_date))
-file_handler.setLevel(logging.INFO)  # 设置文件处理器的日志级别为 DEBUG
+file_handler.setLevel(logging.WARNING)  # 设置文件处理器的日志级别为 DEBUG
 
 # 创建一个处理器，输出到控制台
 console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.INFO)  # 设置控制台处理器的日志级别为 DEBUG
+console_handler.setLevel(logging.WARNING)  # 设置控制台处理器的日志级别为 DEBUG
 
 # 创建一个格式化器，并将其添加到处理器中
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')

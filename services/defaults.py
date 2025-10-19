@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import os
 import re
 import time
 from dataclasses import dataclass
@@ -195,6 +194,11 @@ class STTService(BaseService):
             if has_chunks:
                 new_path = str(self._rename_chunk(Path(path), text, idx))
                 chunk_list[idx] = new_path
+                # 将文件重命名为新文件名
+                try:
+                    os.rename(path, new_path)
+                except OSError:
+                    logger.warning("Failed to rename chunk %s to %s", path, new_path)
             transcripts.append({"file": new_path, "text": text})
 
         context.artifacts["transcripts"] = transcripts
@@ -230,9 +234,9 @@ class PlaybackService(BaseService):
     initial_repeats: Optional[int] = None
     initial_threshold: Optional[int] = None
     translate: bool = False
+    play_audio_flag: bool = True
     skip_first: bool = False
     fs_multi: float = 1.0
-    dry_run: Optional[bool] = None
 
     def run(self, context: StepContext) -> Dict[str, Any]:
         params = self._merge_params(context.settings)
@@ -263,8 +267,6 @@ class PlaybackService(BaseService):
             limit_seconds = float(session_limit)
         except (TypeError, ValueError):
             limit_seconds = None
-        if limit_seconds and (context.asset.lang or "").lower().startswith("en"):
-            limit_seconds /= 4.0
 
         for offset, path in enumerate(chunk_paths[start_idx:], start=start_idx):
             if limit_seconds is not None and playback_seconds >= limit_seconds:
@@ -289,31 +291,40 @@ class PlaybackService(BaseService):
                 repeats = int(initial_repeats)
 
             file_name = Path(path).name
+            words_len = len(file_name.split("_"))-1
             transcript_text = transcript_map.get(file_name, "")
-            translation_text = None
-            if params.get("translate") and transcript_text:
-                translation_text = self._translate(transcript_text)
-                if translation_text:
-                    translations.append({"file": path, "translation": translation_text})
 
             if callback:
                 callback(file_name, offset)
 
             segment_seconds = self._segment_duration_seconds(path)
-            repeat_count = max(1, repeats)
-            for _ in range(repeat_count):
+            translation_text = None
+                    
+            logger.info("Translation result for %s: %s", path, translation_text)
+            # 针对英文文本，如果只有单词的话取消重复播放
+            if (context.asset.lang or "").lower().startswith("en") and words_len == 1:
+                repeat_count = 1
+            else:
+                repeat_count = repeats
+                if params.get("translate") and transcript_text:
+                    translation_text = self._translate(transcript_text)
+                    if translation_text:
+                        translations.append({"file": path, "translation": translation_text})
+
+                
+            for idx in range(repeat_count):
                 self._play(path, params)
                 playback_seconds += segment_seconds
-                time.sleep(1)
+                if translation_text and idx == 0 and repeat_count>1:
+                    try:
+                        speak_text(translation_text, play_audio_flag=self.play_audio_flag)
+                    except Exception as exc:  # pragma: no cover
+                        logger.warning("Speak translation failed: %s", exc)
 
             played_segments += 1
             last_played = path
 
-            if translation_text and params.get("speak_translation") and speak_text:
-                try:
-                    speak_text(translation_text, play_audio_flag=not params.get("dry_run", False))
-                except Exception as exc:  # pragma: no cover
-                    logger.warning("Speak translation failed: %s", exc)
+
 
         playback_result = {
             "last_played": last_played,
@@ -334,21 +345,11 @@ class PlaybackService(BaseService):
             "translate": self.translate,
             "skip_first": self.skip_first,
             "fs_multi": self.fs_multi,
-            "dry_run": self._default_dry_run(),
         }
         params.update({k: v for k, v in overrides.items() if v is not None})
         return params
 
-    def _default_dry_run(self) -> bool:
-        if self.dry_run is not None:
-            return bool(self.dry_run)
-        env_flag = os.environ.get("WORKFLOW_DRY_RUN", "").lower()
-        return env_flag in {"1", "true", "yes"}
-
     def _play(self, path: str, params: Dict[str, Any]) -> None:
-        if params.get("dry_run"):
-            logger.info("Dry-run playback: %s", path)
-            return
         try:
             play_audio(path, fs_multi=float(params.get("fs_multi", 1.0)))
         except Exception as exc:  # pragma: no cover
@@ -360,7 +361,7 @@ class PlaybackService(BaseService):
         try:
             return traslate_text(text)
         except Exception as exc:  # pragma: no cover
-            logger.warning("Translation failed: %s", exc)
+            raise Exception("Translation failed: %s", exc)
             return None
 
     @staticmethod
