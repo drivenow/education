@@ -63,6 +63,7 @@ class WorkflowConfig(BaseModel):
     id: str
     title: Optional[str] = None
     max_session_seconds: Optional[int] = None
+    flag_loop_assets: bool = False  # 播放完一轮后是否自动循环
     services: List[ServiceConfig] = Field(default_factory=list)
     steps: List[StepConfig] = Field(default_factory=list)
     assets: List[AssetConfig] = Field(default_factory=list)

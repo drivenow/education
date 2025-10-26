@@ -11,7 +11,7 @@ def qwen_invoke(sentence):
     global llm
     if not llm:
         from langchain_community.llms import Ollama
-        llm = Ollama(base_url="http://192.168.1.2:11434", model="qwen3:14b")
+        llm = Ollama(base_url="http://192.168.1.2:11434", model="qwen3:8b")
     # acquire reply content
     response = llm.invoke("以下句子换个表达，直接给出转换后的表达，无需解释：{}".format(sentence))
     print(response)
@@ -22,7 +22,7 @@ def qwen_revise(sentence):
     global llm
     if not llm:
         from langchain_community.llms import Ollama
-        llm = Ollama(base_url="http://192.168.1.2:11434", model="qwen3:14b")
+        llm = Ollama(base_url="http://192.168.1.2:11434", model="qwen3:8b")
     # acquire reply content
     response = llm.invoke(f"""您的任务是校对和修改中文文本。您的目标是识别和纠正任何错误，特别是拼写错误和不正确的字符。以下是您需要审阅的文本：
             <chinese_text>

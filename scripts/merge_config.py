@@ -12,7 +12,7 @@ base['assets'].extend(science['assets'])
 base['assets'].extend(english['assets'])
 base['updated_at'] = history['updated_at']
 
-output_path = Path('config/workflows/history_science_english.json')
+output_path = Path('config/history_science_english.json')
 output_path.parent.mkdir(parents=True, exist_ok=True)
 output_path.write_text(json.dumps(base, ensure_ascii=False, indent=2), encoding='utf-8')
 print('Wrote', output_path, 'with', len(base['assets']), 'assets')

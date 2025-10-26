@@ -111,6 +111,10 @@ class ProgressStore:
         record = self._records.get(asset_id)
         return bool(record and record.completed)
 
+    def get_record(self, asset_id: str) -> TaskMeta | None:
+        """Return the stored TaskMeta for a given asset if present."""
+        return self._records.get(asset_id)
+
     def flush(self) -> None:
         """Write in-memory records back to the backing JSON file if dirty."""
         if not self._dirty and self.path.exists():

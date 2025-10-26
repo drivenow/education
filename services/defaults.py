@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import os
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -283,6 +284,7 @@ class PlaybackService(BaseService):
             repeats = params.get("repeats", 1)
             threshold = params.get("initial_threshold")
             initial_repeats = params.get("initial_repeats")
+            params["fs_multi"] = 0.8*self.fs_multi if context.asset.lang == "en" else self.fs_multi
             if (
                 threshold is not None
                 and initial_repeats is not None
@@ -311,20 +313,19 @@ class PlaybackService(BaseService):
                     if translation_text:
                         translations.append({"file": path, "translation": translation_text})
 
-                
             for idx in range(repeat_count):
                 self._play(path, params)
                 playback_seconds += segment_seconds
                 if translation_text and idx == 0 and repeat_count>1:
                     try:
+                        time.sleep(1.5)
                         speak_text(translation_text, play_audio_flag=self.play_audio_flag)
                     except Exception as exc:  # pragma: no cover
                         logger.warning("Speak translation failed: %s", exc)
+                time.sleep(0.6+words_len*0.25)
 
             played_segments += 1
             last_played = path
-
-
 
         playback_result = {
             "last_played": last_played,

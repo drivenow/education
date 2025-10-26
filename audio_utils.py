@@ -34,13 +34,15 @@ def play_audio(audio_file, fs_multi=1.0, gain=1.5, gain_db=None):
     gain (float, 可选): 增益倍数，默认1.0。
     gain_db (float, 可选): 增益 dB 值，默认None。
     """
-    sps, audio = wavfile.read(audio_file)
-
-    # 到 float32，范围 [-1, 1]
-    if np.issubdtype(audio.dtype, np.integer):
-        x = audio.astype(np.float32) / np.iinfo(audio.dtype).max
-    else:
-        x = audio.astype(np.float32)
+    try:
+        sps, audio = wavfile.read(audio_file)
+        if np.issubdtype(audio.dtype, np.integer):
+            x = audio.astype(np.float32) / np.iinfo(audio.dtype).max
+        else:
+            x = audio.astype(np.float32)
+    except ValueError:
+        # wavfile 只支持 RIFF WAV，FLAC 等格式交给 soundfile 处理
+        x, sps = sf.read(audio_file, dtype="float32")
 
     # 增益：优先用 dB
     if gain_db is not None:

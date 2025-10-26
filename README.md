@@ -10,7 +10,7 @@
   - `services/` 目录包含默认服务实现：音频切分、Whisper 识别、翻译、VITS/外部 TTS 等。
   - `orchestrator.py` 根据配置驱动步骤执行，支持按素材覆写部分参数。
 - **命令行工具**：`workflow_runner.py` 支持从配置或单文件运行工作流，覆盖切分、识别、播报的完整流程。
-- **周计划示例**：`config/workflows/weekly_listening.json` 复刻 legacy 模块的每周听读安排，可按日期执行。
+- **周计划示例**：`config/weekly_listening.json` 复刻 legacy 模块的每周听读安排，可按日期执行。
 - **保留旧逻辑**：`legacy/` 存放原 `audio_process_and_replay.py` 及迁移后的批处理入口以便参考。
 
 ---
@@ -51,10 +51,10 @@ uv run python workflow_runner.py \
 - `--no-translate`：关闭中文翻译；`--no-playback`：跳过播放，适合无声卡环境。
 
 #### 3.2 使用配置文件
-`config/workflows/weekly_listening.json` 复刻旧版周计划。示例：
+`config/weekly_listening.json` 复刻旧版周计划。示例：
 ```bash
 uv run python workflow_runner.py \
-  --config config/workflows/weekly_listening.json \
+  --config config/weekly_listening.json \
   --day Mon        # 仅执行周一计划
   --no-playback    # 只切分+识别
 ```
@@ -79,10 +79,10 @@ python legacy/main_audio_workflow.py --day Mon
 |------------------|--------------------------------------------------------------|
 | `ServiceConfig`  | 声明运行时需要的服务实例，包含 `name`、`impl`、`options`    |
 | `StepConfig`     | 定义步骤的执行顺序与参数：`id`、`type`、`service`、`params` |
-| `AssetConfig`    | 需要处理的素材（基于 `TaskMeta`），支持 `lang`、`crontab`、`steps` 等参数 |
+| `AssetConfig`    | 需要处理的素材（基于 `TaskMeta`），支持 `lang`、`steps` 等参数 |
 | `WorkflowConfig` | 顶层入口，包含 `services`、`steps`、`assets`                 |
 
-示例（节选自 `config/workflows/grade1_example.json`）：
+示例（节选自 `config/grade1_example.json`）：
 
 ```json
 {
@@ -113,16 +113,41 @@ python legacy/main_audio_workflow.py --day Mon
     "play": { "repeats": 1, "translate": true }
   },
   "lang": "en",
-  "crontab": "Mon",
   "max_session_seconds": 900
 }
 ```
 
 表示在 `play` 步骤使用重复 1 次、开启翻译，其余步骤仍按全局配置执行。`max_session_seconds` 用于限制单次播放的最长时长（若语言为英文，实际时长会除以 3），超过后本次 session 自动停止。覆写只允许修改现有步骤的参数或 service 名，不能增加/删除步骤，以保持流程结构一致。
 
+### 批量生成配置
+可使用 `scripts/generate_config.py` 按目录生成基础工作流 JSON：
+
+```bash
+python scripts/generate_config.py \
+  --directory "/path/to/audio_dir" \
+  --lang en \
+  --config-id my_audio_plan \
+  --title "My Audio Plan" \
+  --output config/my_audio_plan.json
+```
+
+脚本会扫描目录下的音频文件，自动填充 `assets` 列表并附带默认的切分/识别/播放服务。  
+例如，针对 *Fun for Starters* 全套音频生成配置：
+
+```bash
+python scripts/generate_config.py \
+  --directory "/mnt/x/BaiduNetdiskDownload/Fun for Starters 4th/176_4- Fun for Starters. 4th edition, Class Audio CD/Fun for Starters. 4th edition, 2017 Class Audio CD" \
+  --lang en \
+  --config-id fun_for_starters_audio \
+  --title "Fun for Starters Audio" \
+  --output config/fun_for_starters_audio.json
+```
+
+生成的 `config/fun_for_starters_audio.json` 包含 38 个音频条目，可直接配合 `workflow_runner.py` 或 Streamlit 前端执行播放流程。
+
 ### 常见配置文件
-- `config/workflows/split_transcribe_example.json`：最小示例，仅演示切分与识别。
-- `config/workflows/weekly_listening.json`：完整周计划，与旧版脚本等价，可配合 `workflow_runner.py --day Mon` 等过滤运行。
+- `config/split_transcribe_example.json`：最小示例，仅演示切分与识别。
+- `config/weekly_listening.json`：完整周计划，与旧版脚本等价，可按需裁剪资产列表使用。
 - `legacy/main_audio_workflow.py`：使用代码构造上述配置并执行，供迁移对照。
 
 ### StepContext 说明

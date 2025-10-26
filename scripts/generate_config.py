@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import os
 from datetime import datetime
 import hashlib
 from pathlib import Path
@@ -35,10 +36,11 @@ def normalize_path(path: Path) -> str:
 
 
 def collect_audio_files(directory: Path) -> list[Path]:
+    # 使用递归遍历，确保子目录里的音频文件也能被发现
     return sorted(
         [
             path
-            for path in directory.iterdir()
+            for path in directory.rglob("*")
             if path.is_file() and path.suffix.lower() in AUDIO_EXTS
         ]
     )
@@ -49,7 +51,7 @@ def default_steps_for_lang(lang: str) -> dict[str, dict]:
     if lang_lower.startswith("en"):
         return {
             "split": {"enabled": True, "label_with_stt": True},
-            "play": {"translate": True, "skip_first": False, "repeats": 2},
+            "play": {"translate": True, "skip_first": False, "repeats": 3},
         }
     return {
         "split": {"enabled": False, "label_with_stt": False},
@@ -66,10 +68,10 @@ def build_asset(
     timestamp: str,
     mnt_convert: bool = False,
 ) -> dict:
-    print(directory, mnt_convert)
+    print(directory, file_path.name)
     return {
         "id": file_path.name,#f"{dir_slug}_{index:03d}_{slugify(file_path.stem)}",
-        "source_uri": normalize_path(directory) if mnt_convert else directory.as_posix(),
+        "source_uri": normalize_path(file_path.parent.resolve()) if mnt_convert else os.path.dirname(file_path.parent.resolve()),
         "file_name": file_path.name,
         "lang": lang,
         "is_valid": True,
@@ -158,7 +160,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config-id", help="Config id, defaults to <dir>_<lang> slug.")
     parser.add_argument("--title", help="Config title.")
     parser.add_argument("--max-session-seconds", type=int, help="Optional max playback seconds per session.")
-    parser.add_argument("--mnt-convert", type=int, default=1, help="Convert paths to Windows-style if on mounted drive.")
+    parser.add_argument("--system_windows", type=int, default=1, help="Convert paths to windows-style if on mounted drive.")
+    parser.add_argument("--sort", type=str, default="name_asc", choices=["time_asc", "time_desc", "name_asc"], help="Sort assets in ascending order.")
     return parser.parse_args()
 
 
@@ -178,7 +181,14 @@ def main() -> None:
 
     config_id = args.config_id or f"{slugify(directory.name)}_{args.lang.lower()}"
     title = args.title or f"{directory.name} ({args.lang})"
-    mnt_convert = True if args.mnt_convert else False
+    mnt_convert = True if args.system_windows else False
+    sort = args.sort
+    if sort == "time_asc":
+        files = sorted(files, key=lambda x: x.stat().st_ctime)
+    elif sort == "time_desc":
+        files = sorted(files, key=lambda x: x.stat().st_ctime, reverse=True)
+    elif sort == "name_asc":
+        files = sorted(files, key=lambda x: x.name)
 
     config = build_config(
         directory=directory,
@@ -205,7 +215,20 @@ python scripts/generate_config.py \
   --lang en \
   --config-id fun_for_starters_audio \
   --title "Fun for Starters Audio" \
-  --output config/workflows/mnt_fun_for_starters_audio.json \
-  --max-session-seconds 60 
-  --mnt-convert 0
+  --output config/mnt_fun_for_starters_audio.json \
+  --max-session-seconds 60 \
+  --system_windows 1
+
+
+python scripts/generate_config.py \
+  --directory "/mnt/x/BaiduNetdiskDownload/宫崎骏电影原生整理合集/第一辑" \
+  --lang zh \
+  --config-id gongqijun \
+  --title gongqijun \
+  --output config/gongqijun_audio.json \
+  --max-session-seconds 300 \
+  --system_windows 1
 """
+
+
+

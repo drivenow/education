@@ -217,7 +217,7 @@ def speak_text(text,  language = "简体中文", role_id = 0, save_file = "file_
         # text, speaker, language, speed = "你好，世界！", "rosalia", '简体中文', 1.0
         if not use_api:
             fs_multi = 1.1
-            gain = 1.1
+            gain = 1.5
             if not os.path.exists(chunk_path):
                 result, audio = tts_fn(chunk, language)
                 if result == "Success":
